@@ -70,5 +70,5 @@ steps:
     containerRegistry: 'SimpleWebApp'
     repository: 'megha22/SimpleWebApp'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'Dockerfile'
     tags: '$(Build.BuildId)'
