@@ -68,7 +68,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'SimpleWebApp'
-    repository: 'megha22/SimpleWebApp:47'
+    repository: 'megha22/SimpleWebApp'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
     tags: '$(Build.BuildId)'
