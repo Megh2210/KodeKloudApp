@@ -21,25 +21,13 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'SonarQube_DotNet'
-    scannerMode: 'MSBuild'
-    projectKey: 'SimpleWebApp_SimpleWebApp'
+#- task: SonarQubePrepare@5
+#  inputs:
+#    SonarQube: 'SonarQube_DotNet'
+#    scannerMode: 'MSBuild'
+#    projectKey: 'SimpleWebApp_SimpleWebApp'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-
+    
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'SonarQube_DotNet'
@@ -52,6 +40,25 @@ steps:
       
       $params = "$env:SONARQUBE_SCANNER_PARAMS" -replace '"sonar.branch.name":"[\w,/,-]*"\,?'
       Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_11_X64'
 
 
 - task: SonarQubePublish@5
