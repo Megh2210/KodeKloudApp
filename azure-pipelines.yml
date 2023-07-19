@@ -3,7 +3,7 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-pr:
+target:
 - main
 
 pool:
@@ -37,7 +37,6 @@ steps:
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
-      
       $params = "$env:SONARQUBE_SCANNER_PARAMS.PSObject.Properties('sonar.branch.name')"
       Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
 
