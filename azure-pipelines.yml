@@ -85,3 +85,11 @@ steps:
 #    trivy image megha22/simplewebapp:$(Build.BuildId)
 #  displayName: "Trivt - Image Scanning"
 
+
+- task: KubernetesManifest@1
+  inputs:
+    action: 'deploy'
+    connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'azuredevops-1'
+    namespace: 'default'
+    manifests: 'Dockerfile'
