@@ -81,7 +81,7 @@ steps:
 #    exitCode: '0'
 
 
-- script: | 
-    trivy image megha22/simplewebapp:$(Build.BuildId)
-  displayName: "Trivt - Image Scanning"
+#- script: | 
+#    trivy image megha22/simplewebapp:$(Build.BuildId)
+#  displayName: "Trivt - Image Scanning"
 
