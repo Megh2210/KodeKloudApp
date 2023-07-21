@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: KodeKloudApp
+  name: KodeKloudApp
+  namespace: 'azuredevops'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: KodeKloudApp
+  template:
+    metadata:
+      labels:
+        run: KodeKloudApp
+    spec:
+      containers:
+      - name: simplewebapp
+        image: megha22/simplewebapp:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
