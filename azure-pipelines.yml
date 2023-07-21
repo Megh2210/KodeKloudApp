@@ -92,4 +92,4 @@ steps:
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'azuredevops-1'
     namespace: 'default'
-    manifests: 'Dockerfile'
+    manifests: 'KodeKloudApp.yaml'
